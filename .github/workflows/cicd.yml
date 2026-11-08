@@ -54,7 +54,8 @@ jobs:
       - name: Deploy with Docker Compose
         shell: powershell
         run: |
-          docker compose down
+          docker rm -f uts-devops-db uts-devops-backend uts-devops-frontend 2>$null
+          docker compose down --remove-orphans
           docker compose up -d --build
 
       # - name: Health check
