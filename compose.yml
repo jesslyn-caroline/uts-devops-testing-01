@@ -2,7 +2,10 @@ version: '3.8'
 
 services:
   frontend:
-    build: ./frontend
+    build: 
+      context: /frontend
+      args:
+        - VITE_API_URL=${VITE_API_URL}
     container_name: uts-devops-frontend
     restart: always
     ports:
@@ -32,7 +35,7 @@ services:
 
   db:
     image: mysql:latest
-    container_name: mysql-db
+    container_name: uts-devops-db
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
