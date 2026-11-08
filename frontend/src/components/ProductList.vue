@@ -3,7 +3,7 @@
     <router-link
       to="/create"
       class="w-fit h-fit px-4 py-2 rounded-md bg-emerald-300 text-white text-md font-semibold"
-      >Add New Edit</router-link
+      >Add New</router-link
     >
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
       <table
@@ -37,12 +37,6 @@
                 class="w-fit h-fit px-4 py-2 rounded-md bg-emerald-300 text-white text-md font-semibold"
                 >Edit</router-link
               >
-              <button
-                class="w-fit h-fit px-4 py-2 rounded-md bg-emerald-300 text-white text-md font-semibold"
-                @click="deleteProduct(item.product_id)"
-              >
-                Delete
-              </button>
             </td>
           </tr>
         </tbody>
@@ -72,14 +66,6 @@ export default {
         console.log(this.items);
       } catch (err) {
         console.log("Error fetching products:", err);
-      }
-    },
-    async deleteProduct(id) {
-      try {
-        await axios.delete(`${import.meta.env.VITE_API_URL}/api/products/${id}`);
-        this.getProducts();
-      } catch (err) {
-        console.log("Error deleting product:", err);
       }
     },
   },
