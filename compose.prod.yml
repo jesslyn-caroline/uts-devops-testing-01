@@ -1,6 +1,6 @@
 services:
   frontend:
-    image: jesslyncaroline/uts-devops-frontend:1.0.0
+    image: jesslyncaroline/uts-devops-frontend:latest
     container_name: uts-devops-frontend
     restart: always
     ports:
@@ -11,7 +11,7 @@ services:
       - app-network
 
   backend:
-    image: jesslyncaroline/uts-devops-backend:1.0.0
+    image: jesslyncaroline/uts-devops-backend:latest
     container_name: uts-devops-backend
     restart: always
     ports:
