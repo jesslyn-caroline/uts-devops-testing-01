@@ -26,17 +26,17 @@ jobs:
 
 
       - name: Build backend Docker image
-        run: docker build -t jesslyncaroline/uts-devops-backend:1.0.0 ./backend
+        run: docker build -t jesslyncaroline/uts-devops-backend:latest ./backend
 
       - name: Push backend Docker image
-        run: docker push jesslyncaroline/uts-devops-backend:1.0.0
+        run: docker push jesslyncaroline/uts-devops-backend:latest
 
 
       - name: Build frontend Docker image
-        run: docker build -t jesslyncaroline/uts-devops-frontend:1.0.0 ./frontend
+        run: docker build -t jesslyncaroline/uts-devops-frontend:latest ./frontend
 
       - name: Push frontend Docker image
-        run: docker push jesslyncaroline/uts-devops-frontend:1.0.0
+        run: docker push jesslyncaroline/uts-devops-frontend:latest
 
 
       - name: Set up Node.js
