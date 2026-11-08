@@ -33,10 +33,10 @@ jobs:
 
 
       - name: Build frontend Docker image
-        run: docker build -t jesslyncaroline/uts-devsops-frontend:1.0.0 ./frontend
+        run: docker build -t jesslyncaroline/uts-devops-frontend:1.0.0 ./frontend
 
       - name: Push frontend Docker image
-        run: docker push jesslyncaroline/uts-devsops-frontend:1.0.0
+        run: docker push jesslyncaroline/uts-devops-frontend:1.0.0
 
 
       - name: Set up Node.js
