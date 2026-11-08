@@ -5,11 +5,10 @@ import bodyParser from 'body-parser';
 import 'dotenv/config';    
 
 const con = mysql2.createConnection({
-    host: process.env.DATABASE_HOST,
-    port: 8002,
-    user: process.env.DATABASE_USER,
-    password: process.env.DATABASE_PASSWORD,
-    database: process.env.DATABASE_NAME,
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
 })
 
 con.connect((err) => {
