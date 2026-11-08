@@ -49,6 +49,7 @@ jobs:
         run: docker push jesslyncaroline/uts-devops-frontend:latest
 
   deploy-local:
+    name: Deploy Locally
     needs: build-and-push
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: self-hosted
