@@ -25,6 +25,10 @@ app.use(cors());
 
 app.listen(port, () => console.log(`http://localhost:${port}`));
 
+app.get('/', (req, res) => {
+    return res.send('Hii')
+})
+
 app.get('/api/products', (req, res) => {
     let sql = 'SELECT * FROM product';
     let query = con.query(sql, (err, result) => {
