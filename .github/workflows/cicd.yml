@@ -5,14 +5,9 @@ on:
     branches:
       - main
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
 jobs:
-  build-and-deploy:
-    name: Build, Push, and Deploy
+  build-and-push:
+    name: Build and Push Docker Images
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
@@ -24,13 +19,11 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-
       - name: Build backend Docker image
         run: docker build -t jesslyncaroline/uts-devops-backend:latest ./backend
 
       - name: Push backend Docker image
         run: docker push jesslyncaroline/uts-devops-backend:latest
-
 
       - name: Build frontend Docker image
         run: docker build -t jesslyncaroline/uts-devops-frontend:latest ./frontend
@@ -38,23 +31,19 @@ jobs:
       - name: Push frontend Docker image
         run: docker push jesslyncaroline/uts-devops-frontend:latest
 
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+  deploy:
+    name: Deploy to Production
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to Production via SSH
+        uses: appleboy/ssh-action@master
         with:
-          node-version: 20
-
-      - name: Build frontend
-        working-directory: ./frontend
-        run: |
-          npm ci
-          npm run build
-
-      - name: Upload Artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./frontend/dist
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          host: ${{ secrets.PROD_HOST }}
+          username: ${{ secrets.PROD_USER }}
+          key: ${{ secrets.PROD_SSH_KEY }}
+          script: |
+            cd /path/to/your/app
+            git pull origin main
+            docker compose pull
+            docker compose up -d --build
