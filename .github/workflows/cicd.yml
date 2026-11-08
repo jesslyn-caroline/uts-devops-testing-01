@@ -7,7 +7,6 @@ on:
 
 jobs:
   test:
-    needs: test
     name: Run Tests
     runs-on: ubuntu-latest
     steps:
@@ -24,6 +23,7 @@ jobs:
           npm test
 
   build-and-push:
+    needs: test
     name: Build and Push Docker Images
     runs-on: ubuntu-latest
     steps:
